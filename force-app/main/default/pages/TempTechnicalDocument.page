@@ -1,0 +1,475 @@
+<apex:page setup="false" sidebar="false"  renderAs="pdf" showHeader="false" standardController="OpportunityLineItem" extensions="TechnicalDocumentApexClass" applyHtmlTag="false" applyBodyTag="false">
+    <!--apex:stylesheet value="{!$Resource.CSSHelper}"  /-->
+    <head>
+       <style>
+            @page {
+            margin-top: 0cm;
+             background-image: url('https://sudeengg--util--c.sandbox.vf.force.com/resource/1673873517000/Watermark?');
+            background-repeat: no-repeat;
+            background-position: center;
+           @bottom-left {
+            content: element(footer);
+          }
+      }
+           div.footer {
+            display: block;
+            padding: 5px;
+            position: running(footer);
+           }
+           .pagenumber:before {
+                content: counter(page);
+            }
+            .pagecount:before {
+                content: counter(pages);
+            }
+           
+           table.one {
+           float:left;
+           }
+           
+           table.two   {
+           float:right;
+          
+           }
+           
+         </style>
+    </head>
+    <body>
+        
+        <div class="footer" style="margin-left: auto;margin-right: auto;">
+            <hr style="border-top: 1px solid #20B2AA;" />
+            <div class="number" Style="float:right;font-size:15px;">Page <span class="pagenumber"/> of <span class="pagecount"/></div>
+        </div>
+        
+        <div class="content">
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif">
+            <!--apex:image value="https://cmenvirosystems--cmedev.sandbox.my.salesforce.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&versionId=0685j000007gufR&operationContext=CHATTER&contentId=05T5j00000Hz5kT" style="float:right;height:75px;" /-->
+            <div style="float:right;">
+                <apex:image url="{!$Resource.SudeImage}" width="120" height="60" /><br/>   
+            </div>
+            <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%;color:#13928d;font-size:20px;">
+                <b style="font-size: 28px;color : #606060;" >Technical Data Sheet </b>  
+            </div>
+        </div>
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif;">
+            <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%">
+                
+                <span>
+                    <b>REF. NO.	:</b>{!OppLineItemRec.Opportunity.SyncedQuote.QuoteNumber}<br/>
+                    <b>Date 	:</b> 
+                    <apex:outputText value="{0,date,dd' 'MMMMM' 'yyyy}" style="font-size: 14.5px;">
+                    <apex:param value="{!CurrentDate}"  /> 
+                       </apex:outputText><br/>
+                    <b>Phone	:</b>{!CompanyInfo.CMP_Phone__c}<br/>
+                    <b>Fax		:</b>{!CompanyInfo.CMP_Phone__c}<br/>
+                    <b>E-mail	:</b>sude@gmail.com<br/>
+                    <b>Website 	:</b>{!CompanyInfo.CMP_Website__c}
+                </span>
+            </div>
+            <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:right;">
+                <b Style="font-size:20px;">Sude Engineering Corporation</b><br/>
+                <br/>
+                <span>
+                    1106, Bus Stop, Near, 10th Main Rd, <br/>
+                    Chowdappa Layout,Hampi Nagar,<br/>  
+                    RPC Layout,Vijayanagar,Bengaluru,<br/>
+                    Karnataka 560104
+                </span>
+                
+                
+            </div>
+            
+        </div>
+             <!--div style="float:right;">
+            <apex:image url="{!$Resource.SudeImage}" width="100" height="60"/><br/>  
+        </div-->
+        
+      
+        
+        <!--div style="float:left;margin-top:9px;font-family: math;">
+        <b style="font-size: 28px;color : #606060;" >Technical Data Sheet </b><BR/>
+        REF. NO.: DS-2223-1097-1<br/>
+        Date :<span style="color:#2E8B57">19-Dec-2022 </span><br/><br/><br/>       
+    </div-->
+       
+    
+       <!--div style="float:right;margin-top:75px;margin-right:-97px">
+           {!CompanyInfo.CMP1__c}<br/>
+           {!CompanyInfo.CMP2__c}<br/>
+           {!CompanyInfo.CMP3__c}<br/>
+           {!CompanyInfo.CMP_Phone__c}<br/>
+           {!CompanyInfo.CMP_Website__c}<br/><br/><br/>
+     </div-->
+    
+            <!--div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                        <table   style="width:50%;border-spacing: 10px;float:left;">
+                            <tr>
+                                <td style="height:25px;font-size:15px;width:20%">Quotation&nbsp;Refer&nbsp;No</td>
+                                <td style="font-size:12px;;background-color:#d1e0df;width:40%;">{!OppLineItemRec.Opportunity.SyncedQuote.Name}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Client Refer No</td>
+                                <td style="font-size:12px;background-color:#d1e0df;width:40%;">{!OppLineItemRec.Opportunity.SyncedQuote.QuoteNumber}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Date</td>
+                                <td style="font-size:12px;background-color:#d1e0df;width:40%;">
+                                    <apex:outputText value="{0,date,dd' 'MMMMM' 'yyyy}" style="font-size: 14.5px;">
+                                        <apex:param value="{!CurrentDate}" /> 
+                                    </apex:outputText>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:50%;border-spacing: 10px;float:right;">
+                            <tr>
+                                <td style="font-size:15px;width:20%">Company Name</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.Account.Name}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Enquiry No.</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.Name}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Product Name</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Name}</td>
+                            </tr>
+                        </table>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </div-->
+        <div style="margin-top:20px;font-family: Noto Sans,Helvetica,sans-serif;">
+            <table   style="width: 100%;border: 1px solid #20B2AA; border-spacing: 10px;">
+                <tr style="width: 100%;">
+                    <td style="height:25px;font-size:15px;width:20%">Quotation Refer No</td>
+                    <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.SyncedQuote.Name}</td>
+                    <td style="font-size:15px;width:20%">Company Name</td>
+                    <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.Account.Name}</td>
+                </tr>
+                
+                 <tr>
+                    <td style="height:25px;border-radius:5px;font-size:15px;">Client Refer No</td>
+                    <td style="font-size:12px;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.SyncedQuote.QuoteNumber}</td>
+                    <td style="font-size:15px;">Enquiry No.</td>
+                    <td style="font-size:12px;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.Name}</td>
+                </tr> 
+                <tr>
+                    <td style="height:25px;border-radius:5px;font-size:15px;">Date</td>
+                    <td style="font-size:12px;background-color:#d1e0df;">
+                        <apex:outputText value="{0,date,dd' 'MMMMM' 'yyyy}" style="font-size: 14.5px;">
+                        <apex:param value="{!CurrentDate}"  /> 
+                           </apex:outputText>
+                    </td>
+                     <td style="font-size:15px;">Product Name</td>
+                    <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Name}</td>
+                </tr> 
+            </table>
+        </div>
+    
+         <p style="color:#20B2AA;text-align:center;font-size: 13px;font-weight:bold">
+                <b>CUSTOMER APPLICATION DETAILS</b>
+            </p>
+            <div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                        <table   style="width:50%;border-spacing: 10px;float:left;">
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%">Valve Type</td>
+                                <td style="font-size:12px;background-color:#d1e0df;width:30%">{!OppLineItemRec.Opportunity.Valve_Type__c}</td>
+                            </tr>
+                        </table>
+                        <table style="width:50%;border-spacing: 10px;float:right;">
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Qty</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.TotalOpportunityQuantity}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Other Info</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!OppLineItemRec.Opportunity.Other_Information__c}</td>
+                            </tr>
+                        </table>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </div>
+            
+            <p style="color:#20B2AA;text-align:center;font-size: 13px;font-weight:bold">
+                <b>VALVE TECHNICAL DETAILS </b>
+            </p>
+            
+        <!--word-wrap: normal;inline-size: 200px; -->
+            <div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                <apex:pageBlockSection >
+                    <table   style="width:50%;border-spacing: 10px;float:left;">
+                        <tr>
+                                <td style="height:25px;font-size:15px;width:20%;">Item Code</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.ProductCode}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Model No</td>
+                            <td style="font-size:12px;width:30%;overflow-wrap: break-word;background-color:#d1e0df;">{!ProductRec.Model_Number__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Type</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Type__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Flowing Media</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Flowing_Media__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Operation Time</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Operation_Time__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Working Pressure</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Working_Pressure__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Orifice Size</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Orifice_Size__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Seating Material</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;"> {!ProductRec.Seating_Material__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Body Material</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Body_Material__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Fitted with</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.Fitted_With__c}</td>
+                        </tr>
+                         <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Special Notes</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:30%;">{!ProductRec.SpecialNotesvalveTechDetails__c}</td>
+                        </tr>
+                    </table>
+                    
+                    <table style="width:50%;border-spacing: 10px;float:right;">
+                        <tr>
+                            <td style="font-size:15px;height:25px;width:20%;">Valve Action</td>
+                            <td style="font-size:12px;width:40%;overflow-wrap:break-word;background-color:#d1e0df;">{!ProductRec.Valve_Action__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Power Fails to</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Power_Fails_To__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Flow Rate</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Flow_Rate__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Supply Voltage</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Supply_Voltage__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Working Temperature</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Working_Temperature__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Stem Material</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Stem_Material__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">End Connection</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.End_Connection__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Ball Material</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Ball_Material__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Leakage Class</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Leakage_Class__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:15px;">Manual Override</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Manual_Override__c}</td>
+                        </tr>
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;">Type Of Construction</td>
+                            <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Type_Of_Construction__c}</td>
+                        </tr>
+                    </table>
+                </apex:pageBlockSection>
+                    <!--table style="width:100%;border-spacing: 10px;">
+                        <tr>
+                            <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Special Notes</td>
+                            <td style="font-size:12px;background-color:#d1e0df;width:80%;">{!ProductRec.SpecialNotesvalveTechDetails__c}</td>
+                        </tr>
+                    </table-->
+              </apex:pageBlock>
+            </div>
+              
+            <div style="page-break-after:always;">
+           
+        </div>
+            
+         <p style="color:#20B2AA;text-align:center;font-size: 13px;font-weight:bold;margin-top:105px;">
+                <b>ACTUATOR DETAILS</b>
+            </p>
+            <div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                        <table   style="width:50%;border-spacing: 10px;float:left;">
+                            <tr>
+                                <td style="height:25px;font-size:15px;width:20%">Actuator Motor</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Actuator_Motor__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Actuator Inbuilt With</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Actuator_Inbuilt_With__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Actuator Seat</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Actuator_Seat__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Actuator Mechanism</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Actuator_Mechanism__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Special Notes</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.SpecialNotesActuatorDetail__c}</td>
+                            </tr>
+                        </table>
+                        
+                        <table style="width:50%;border-spacing: 10px;float:right;">
+                            <tr>
+                                <td style="font-size:15px;width:20%">Actuator Signal Pressure</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Actuator_Signal_Pressure__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Actuator Body Material</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Actuator_Body_Material__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Actuator Operating Time</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Actuator_Operating_Time__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Actuator Enclosure Type</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Type_Of_Actuator__c}</td>
+                            </tr>
+                        </table>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </div>
+        
+        <p style="color:#20B2AA;text-align:center;font-size: 13px;">
+                <b>SPECIAL ACCESSORIES TECHNICAL DETAILS</b>
+            </p>
+            
+            <div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                        <table   style="width:50%;border-spacing: 10px;float:left;">
+                            <tr>
+                                <td style="height:25px;font-size:15px;width:20%">Potentiometer</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Potentiometer_Pot__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Position Transmitter</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Position_Transmitter__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;">Others</td>
+                                <td  style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Other_Notes__c}</td>
+                            </tr>
+                        </table>
+                        <table style="width:50%;border-spacing: 10px;float:right;">
+                            <tr>
+                                <td style="font-size:15px;width:20%">Positioner</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Positioner__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;">Positioner Details</td>
+                                <td style="font-size:12px;background-color:#d1e0df;">{!ProductRec.Positioner_Details__c}</td>
+                            </tr>
+                        </table>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </div>
+            
+                <p style="color:#20B2AA;text-align:center;font-size: 13px;">
+                    <b>ENVIRONMENTAL DETAILS </b>
+                </p>
+            
+            <div  style="border: 1px solid #20B2AA;width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                        <table   style="width:50%;border-spacing: 10px;float:left;">
+                            <tr style="width: 100%;">
+                                <td style="height:25px;font-size:15px;width:20%;">AmbientTemperature<br/>&amp;Humidity</td>
+                                <td style="font-size:12px;width:40%;background-color:#d1e0df;">{!ProductRec.Ambient_Temperature_Humidity__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">Altitude</td>
+                                <td style="font-size:12px;width:30%;padding-inline-end:50px;background-color:#d1e0df;">{!ProductRec.Altitude__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="height:25px;border-radius:5px;font-size:15px;width:20%;">External Wiring</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.External_Wiring__c}</td>
+                            </tr>
+                        </table>
+                        <table style="width:50%;border-spacing: 10px;float:right;">
+                            <tr>
+                                <td style="font-size:15px;width:20% !important;">Permissible Vibration</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Permissible_Vibration__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;width:20%;">Working Area</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Working_Area__c}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:15px;width:20%;">Corrosion Category</td>
+                                <td style="font-size:12px;width:30%;background-color:#d1e0df;">{!ProductRec.Corrosion_Category__c}</td>
+                            </tr>
+                        </table>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </div>
+            <apex:outputPanel rendered="{!CheckTechaddInfo}">
+                <div style="page-break-after:always;">
+                    
+                </div>
+                
+                <p style="color:#20B2AA;text-align:center;font-size:13px;margin-top:80px;">
+                    <b>ADDITIONAL INFORMATION </b>
+                </p>
+                <div style="float:center; border: 1px solid #20B2AA;font-family: Noto Sans,Helvetica,sans-serif; ">
+                    <ul class="a" style="list-style-type: circle;">
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Actuator_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Connection_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Gear_Details__c} </li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Mechanical_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Motor_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Permissible_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Phase_Details__c} </li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Position_Details__c} </li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Speed_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Standards_Ref_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Switches_Details__c}</li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Torque_Details__c} </li>
+                        <li style="margin-bottom:3px;">{!TechAddInfo.Tripping_Details__c}</li>
+                    </ul>
+                </div>
+       </apex:outputPanel>
+             <p style="color:#20B2AA;text-align:center;font-size: 20px;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b>THANK YOU </b>
+            </p>
+           <div style="float:left;margin-top:100px;font-family: Noto Sans,Helvetica,sans-serif;">
+           <Span style="font-weight: bold;">From</Span><br/>
+               <span style="font-size: 15px;">Sude Engineering Corporation,<br/>{!$User.FirstName}  {!$User.LastName},<br/>{!$Profile.Name}<br/><br/> </span> 
+               <span style="color:#606060;">Mob:</span> <span style="color:#606060;">{!userPhone} </span>
+          </div>       
+   
+        </div>
+        
+    </body>
+      
+  
+</apex:page>

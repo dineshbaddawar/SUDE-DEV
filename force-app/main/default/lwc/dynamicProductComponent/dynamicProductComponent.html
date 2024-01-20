@@ -1,0 +1,26 @@
+<template>
+    <lightning-card>
+        <div>
+        <lightning-combobox
+            name="Series"
+            label="Series"
+            value={Seriesvalue}
+            placeholder="Select Your Series"
+            options={Series}
+            onchange={handleChange} ></lightning-combobox>
+        </div>
+         <!--lightning-button label="Next" onclick={HandleNext} variant="brand"></lightning-button-->
+
+         <template if:true={MetaList.length}>
+            <lightning-layout multiple-rows>
+                <template for:each={MetaList} for:item="metadata">
+                    <lightning-layout-item size="6"  padding="around-small" key={metadata.Series_Number__c}>
+                        <lightning-input type={metadata.Field_Type__c} label={metadata.Field_Label__c} required={metadata.Required__c} ></lightning-input>
+                    </lightning-layout-item>
+                </template>
+                
+            </lightning-layout>
+         </template>
+
+    </lightning-card>
+</template>
